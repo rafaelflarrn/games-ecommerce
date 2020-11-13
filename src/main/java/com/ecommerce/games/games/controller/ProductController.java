@@ -1,19 +1,16 @@
 package com.ecommerce.games.games.controller;
 
-import com.ecommerce.games.games.entity.Category;
 import com.ecommerce.games.games.entity.Product;
-import com.ecommerce.games.games.entity.Rating;
 import com.ecommerce.games.games.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @RequestMapping("products")
 @RestController
 public class ProductController {
+
     @Autowired
     private ProductRepository productRepository;
 
