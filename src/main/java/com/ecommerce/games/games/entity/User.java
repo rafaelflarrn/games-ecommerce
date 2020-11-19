@@ -15,20 +15,20 @@ public class User {
     private String email;
     private String password;
 
-    private List<Permission> permissionList;
+    private List<Authorization> authorizations;
     private List<Address> address;
 
     public User() {
     }
 
     public User(Long id, String name, String email,
-                String password, List<Permission> permissionList,
+                String password, List<Authorization> authorizations,
                 List<Address> address) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
-        this.permissionList = permissionList;
+        this.authorizations = authorizations;
         this.address = address;
     }
 
@@ -64,12 +64,12 @@ public class User {
         this.password = password;
     }
 
-    public List<Permission> getPermissionList() {
-        return permissionList;
+    public List<Authorization> getAuthorizations() {
+        return authorizations;
     }
 
-    public void setPermissionList(List<Permission> permissionList) {
-        this.permissionList = permissionList;
+    public void setAuthorizations(List<Authorization> authorizations) {
+        this.authorizations = authorizations;
     }
 
     public List<Address> getAddress() {
