@@ -1,9 +1,6 @@
 package com.ecommerce.games.games.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -13,6 +10,9 @@ public class Shipping {
     private Long id;
     private Date estimatedDelivery;
     private float price;
+
+    @OneToOne
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
     public Shipping() {

@@ -1,9 +1,6 @@
 package com.ecommerce.games.games.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -11,18 +8,32 @@ public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private List<Product> productList;
     private float totalPrice;
-    private Coupon coupon;
+
+    @ManyToMany
+    @JoinTable(name = "CART_PRODUCT",
+                joinColumns = @JoinColumn(name = "cart_id"),
+                inverseJoinColumns = @JoinColumn(name = "product_id"))
+    private List<Product> productList;
+
+    @ManyToMany
+    @JoinTable(name = "CART_COUPON",
+                joinColumns = @JoinColumn(name = "cart_id"),
+                inverseJoinColumns = @JoinColumn(name = "coupon_id"))
+    private List<Coupon> coupon;
+
+    @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
     public Cart() {
     }
 
-    public Cart(Long id, List<Product> productList, float totalPrice, Coupon coupon, User user) {
+    public Cart(Long id, float totalPrice, List<Product> productList,
+                List<Coupon> coupon, User user) {
         this.id = id;
-        this.productList = productList;
         this.totalPrice = totalPrice;
+        this.productList = productList;
         this.coupon = coupon;
         this.user = user;
     }
@@ -51,11 +62,11 @@ public class Cart {
         this.totalPrice = totalPrice;
     }
 
-    public Coupon getCoupon() {
+    public List<Coupon> getCoupon() {
         return coupon;
     }
 
-    public void setCoupon(Coupon coupon) {
+    public void setCoupon(List<Coupon> coupon) {
         this.coupon = coupon;
     }
 

@@ -1,9 +1,6 @@
 package com.ecommerce.games.games.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -15,7 +12,16 @@ public class User {
     private String email;
     private String password;
 
+    @ManyToMany
+    @JoinTable(name = "USER_AUTHORIZATION",
+                joinColumns = @JoinColumn (name = "user_id"),
+                inverseJoinColumns = @JoinColumn (name = "authorization_id"))
     private List<Authorization> authorizations;
+
+    @ManyToMany
+    @JoinTable(name = "USER_ADDRESS",
+                joinColumns = @JoinColumn (name = "user_id"),
+                inverseJoinColumns = @JoinColumn (name = "address_id"))
     private List<Address> address;
 
     public User() {
