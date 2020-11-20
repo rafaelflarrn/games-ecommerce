@@ -1,4 +1,4 @@
-package com.ecommerce.games.games.entity;
+package com.ecommerce.games.games.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -1,4 +1,4 @@
-package com.ecommerce.games.games.entity;
+package com.ecommerce.games.games.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -17,6 +17,7 @@ public class Product implements Serializable {
                 inverseJoinColumns = @JoinColumn (name = "category_id"))
     List<Category> category;
 
+    private String name;
     private String description;
     private Date release_date;
     private Rating rating;
