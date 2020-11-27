@@ -3,6 +3,7 @@ package com.ecommerce.games.games.controllers;
 import com.ecommerce.games.games.entities.Category;
 import com.ecommerce.games.games.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,4 +32,12 @@ public class CategoryController {
 
         return ResponseEntity.status(201).body(createCategory);
     }
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Long> deleteById(@PathVariable Long id) {
+        if(categoryService.deleteById(id)){
+            return new ResponseEntity<>(id, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(id, HttpStatus.NOT_FOUND);
+    }
+
 }

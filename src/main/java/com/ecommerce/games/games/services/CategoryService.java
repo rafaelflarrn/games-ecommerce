@@ -14,7 +14,7 @@ public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    public Category findById(Long id){
+    public Category findById(Long id) {
         Optional<Category> category = categoryRepository.findById(id);
 
         return category.orElse(null);
@@ -26,5 +26,13 @@ public class CategoryService {
 
     public Category create(Category category){
         return categoryRepository.save(category);
+    }
+
+    public boolean deleteById(Long id) {
+        if (categoryRepository.existsById(id)) {
+            categoryRepository.delete(findById(id));
+            return true;
+        }
+        return false;
     }
 }
